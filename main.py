@@ -19,21 +19,24 @@ def word_count(text):
         count +=1
     return count
 
-def char_count(text):
+def char_count(text): 
     lowered_text = text.lower()
     char = {}
     for characters in lowered_text:
-        if characters not in char: 
-            char[characters] = 1
-        else:
-            char[characters] += 1
+        if characters.isalpha():
+            if characters not in char: 
+                char[characters] = 1
+            else:
+                char[characters] += 1
     return char
 
 
 def output(book_path, word_count, char_count):
     print(f"--- Begin report of {book_path} ---")
-    print(f"{word_count} words found in the document")
-    print(char_count)
+    print(f"{word_count} words found in the document\n")
+    sorted_chars = sorted(char_count.items(), key=lambda x: x[1], reverse=True)
+    for character, count in sorted_chars:
+        print(f"The '{character}' character was found {count} times")
     print("--- End report ---")
 
 
